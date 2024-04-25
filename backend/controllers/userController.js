@@ -64,6 +64,7 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+// user logout
 const logoutCurrentUser = asyncHandler(async (req, res) => {
   res.cookie("jwt", "", {
     httyOnly: true,
@@ -73,4 +74,10 @@ const logoutCurrentUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Logged out successfully" });
 });
 
-export { createUser,loginUser, logoutCurrentUser}
+// get all users
+const getAllUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+});
+
+export { createUser,loginUser, logoutCurrentUser, getAllUsers}
