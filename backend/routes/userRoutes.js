@@ -5,6 +5,7 @@ import {
   logoutCurrentUser,
   getAllUsers,
   getCurrentUserProfile,
+  updateCurrentUserProfile
 } from "../controllers/userController.js";
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
 
@@ -22,5 +23,8 @@ router.post( '/auth', loginUser );
 router.post( '/logout', logoutCurrentUser );
 
 // user profile management
-router.route("/profile").get(authenticate, getCurrentUserProfile);
+router
+  .route("/profile")
+  .get(authenticate, getCurrentUserProfile)
+  .put(authenticate, updateCurrentUserProfile);
 export default router;
