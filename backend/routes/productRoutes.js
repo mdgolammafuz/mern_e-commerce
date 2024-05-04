@@ -6,17 +6,23 @@ import {
   addProduct,
   updateProductDetails,
   removeProduct,
+  fetchProducts,
+  fetchProductById,
+  fetchAllProducts,
 } from "../controllers/productController.js";
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
 
 router
   .route("/")
+  .get(fetchProducts)
   .post(authenticate, authorizeAdmin, formidable(), addProduct);
 
+router.route("/allproducts").get(fetchAllProducts);
 
 router
   .route("/:id")
+  .get(fetchProductById)
   .put(authenticate, authorizeAdmin, formidable(), updateProductDetails)
-  .delete( authenticate, authorizeAdmin, removeProduct );
-  
+  .delete(authenticate, authorizeAdmin, removeProduct);
+
 export default router;
