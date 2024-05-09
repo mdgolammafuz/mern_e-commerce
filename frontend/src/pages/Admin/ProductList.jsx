@@ -167,6 +167,7 @@ const ProductList = () => {
                   className="ml-10 p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   onChange={(e) => setCategory(e.target.value)}
                 >
+                  <option value="">Select option</option>
                   {categories?.map((c) => (
                     <option key={c._id} value={c._id}>
                       {c.name}
