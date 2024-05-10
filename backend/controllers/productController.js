@@ -76,9 +76,9 @@ const removeProduct = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Server error" });
   }
-} );
+});
 
-// fetch limited number of products 
+// fetch limited number of products
 const fetchProducts = asyncHandler(async (req, res) => {
   try {
     const pageSize = 6;
@@ -128,7 +128,7 @@ const fetchAllProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find({})
       .populate("category")
-      .limit(12)
+      .limit()
       .sort({ createAt: -1 });
 
     res.json(products);
@@ -136,7 +136,7 @@ const fetchAllProducts = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Server Error" });
   }
-} );
+});
 
 // add review for a product
 const addProductReview = asyncHandler(async (req, res) => {
@@ -201,7 +201,7 @@ const fetchNewProducts = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(400).json(error.message);
   }
-} );
+});
 
 export {
   addProduct,

@@ -229,10 +229,10 @@ const ProductUpdate = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="">Category</label> <br />
+                  <label className="ml-4" htmlFor="">Category</label> <br />
                   <select
                     placeholder="Choose Category"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
+                    className="ml-4 p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
                     defaultValue={ category }
                     onChange={(e) => setCategory(e.target.value)}
                   >

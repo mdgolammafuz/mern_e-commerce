@@ -161,7 +161,7 @@ const ProductList = () => {
               </div>
 
               <div>
-                <label htmlFor="">Category</label> <br />
+                <label className="ml-10" htmlFor="">Category</label> <br />
                 <select
                   placeholder="Choose Category"
                   className="ml-10 p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
