@@ -27,7 +27,7 @@ const ProductCarousel = () => {
   };
 
   return (
-    <div className="mb-4 lg:block xl:block md:block">
+    <div className="mb-4 xl:block lg:block  md:block">
       {isLoading ? null : error ? (
         <Message variant="danger">
           {error?.data?.message || error.error}
@@ -35,7 +35,7 @@ const ProductCarousel = () => {
       ) : (
         <Slider
           {...settings}
-          className="xl:w-[50rem]  lg:w-[50rem] md:w-[56rem] sm:w-[40rem] sm:block"
+          className="mr-10 xl:w-[40rem]  lg:w-[35rem] md:w-[50rem] sm:w-[30rem] sm:block"
         >
           {products.map(
             ({
@@ -58,7 +58,7 @@ const ProductCarousel = () => {
                   className="w-full rounded-lg object-cover h-[30rem]"
                 />
 
-                <div className="mt-4 flex justify-between">
+                <div className="flex justify-between">
                   <div className="one">
                     <h2>{name}</h2>
                     <p> $ {price}</p> <br /> <br />
@@ -67,7 +67,7 @@ const ProductCarousel = () => {
                     </p>
                   </div>
 
-                  <div className="flex justify-between w-[20rem]">
+                  <div className="flex justify-between">
                     <div className="one">
                       <h1 className="flex items-center mb-6">
                         <FaStore className="mr-2 text-white" /> Brand: {brand}
@@ -76,7 +76,7 @@ const ProductCarousel = () => {
                         <FaClock className="mr-2 text-white" /> Added:{" "}
                         {moment(createdAt).fromNow()}
                       </h1>
-                      <h1 className="flex items-center mb-6">
+                      <h1 className="flex items-center mb-6 w-[8rem]">
                         <FaStar className="mr-2 text-white" /> Reviews:
                         {numReviews}
                       </h1>

@@ -26,7 +26,10 @@ const Header = () => {
             ))}
           </div>
         </div>
-        <ProductCarousel />
+        <div className="ml-30">
+            <ProductCarousel />
+        </div>
+        
       </div>
     </>
   );
