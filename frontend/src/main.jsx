@@ -30,6 +30,8 @@ import ProductDetails from "./pages/Products/ProductDetails.jsx";
 import Cart from "./pages/Cart.jsx";
 import Shop from "./pages/Shop.jsx";
 
+import Shipping from "./pages/Orders/Shipping.jsx";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
 
@@ -45,6 +47,7 @@ const router = createBrowserRouter(
       {/*Protected routes for registered users*/ }
       <Route path="" element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} /> 
+        <Route path="/shipping" element={<Shipping />} />
       </Route>
 
       {/* Admin Routes*/ }
