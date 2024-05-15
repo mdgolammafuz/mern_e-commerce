@@ -1,5 +1,6 @@
 import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
+import mongoose from "mongoose";
 
 // Utility Function for Order Items
 function calcPrices(orderItems) {
@@ -78,6 +79,7 @@ const createOrder = async (req, res) => {
   }
 };
 
+// get all orders
 const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find({}).populate("user", "id username");
@@ -87,7 +89,84 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+// get a specific user order
+const getUserOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({ user: req.user._id });
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const countTotalOrders = async (req, res) => {
+  try {
+    const totalOrders = await Order.countDocuments();
+    res.json({ totalOrders });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const calculateTotalSales = async (req, res) => {
+  try {
+    const orders = await Order.find();
+    const totalSales = orders.reduce((sum, order) => sum + order.totalPrice, 0);
+    res.json({ totalSales });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const calcualteTotalSalesByDate = async (req, res) => {
+  try {
+    const salesByDate = await Order.aggregate([
+      {
+        $match: {
+          isPaid: true,
+        },
+      },
+      {
+        $group: {
+          _id: {
+            $dateToString: { format: "%Y-%m-%d", date: "$paidAt" },
+          },
+          totalSales: { $sum: "$totalPrice" },
+        },
+      },
+    ]);
+
+    res.json(salesByDate);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const findOrderById = async (req, res) => {
+  try {
+
+    const order = await Order.findById(req.params.id).populate(
+      "user",
+      "username email"
+    );
+
+    if (order) {
+      res.json(order);
+    } else {
+      res.status(404);
+      throw new Error("Order not found");
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export {
   createOrder,
   getAllOrders,
+  getUserOrders,
+  countTotalOrders,
+  calculateTotalSales,
+  calcualteTotalSalesByDate,
+  findOrderById,
 };
