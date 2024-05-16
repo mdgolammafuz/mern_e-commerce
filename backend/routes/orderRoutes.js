@@ -20,7 +20,7 @@ router
   .post(authenticate, createOrder)
   .get(authenticate, authorizeAdmin, getAllOrders);
 
-router.route("/myorder").get(authenticate, getUserOrders);
+router.route("/my-orders").get(authenticate, getUserOrders);
 router.route("/total-orders").get(countTotalOrders);
 router.route("/total-sales").get(calculateTotalSales);
 router.route("/total-sales-by-date").get(calcualteTotalSalesByDate);
